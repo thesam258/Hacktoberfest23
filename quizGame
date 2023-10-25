@@ -1,0 +1,35 @@
+class Question:
+    def __init__(self, text, choices, correct_choice):
+        self.text = text
+        self.choices = choices
+        self.correct_choice = correct_choice
+
+    def check_answer(self, answer):
+        return answer == self.correct_choice
+
+# Create a list of questions
+questions = [
+    Question("What is the capital of France?", ["A) London", "B) Berlin", "C) Paris", "D) Madrid"], "C"),
+    Question("Which planet is known as the Red Planet?", ["A) Venus", "B) Mars", "C) Jupiter", "D) Saturn"], "B"),
+    Question("What is the largest mammal in the world?", ["A) Elephant", "B) Giraffe", "C) Blue Whale", "D) Dolphin"], "C")
+]
+
+def run_quiz(questions):
+    score = 0
+    for question in questions:
+        print(question.text)
+        for choice in question.choices:
+            print(choice)
+        
+        user_answer = input("Enter the letter of your answer: ").upper()
+        
+        if question.check_answer(user_answer):
+            print("Correct!\n")
+            score += 1
+        else:
+            print(f"Wrong. The correct answer was {question.correct_choice}.\n")
+    
+    print(f"You got {score}/{len(questions)} questions correct.")
+
+if __name__ == "__main__":
+    run_quiz(questions)
